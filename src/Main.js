@@ -115,7 +115,7 @@ const block = async (e) => {
     });
 
     const result = await response.json(); // or text() depending on what PHP returns
-    
+    console.log(result)
     if(result.length===0){
       alert('No Match Found!')
     }else{
