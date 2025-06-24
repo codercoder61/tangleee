@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Main() {
  
-
+const [flag,setFlag] = useState(false)
 const [numbers, setNumbers] = useState(null);
 
 const addFavourite = async (e) => {
@@ -28,6 +28,26 @@ const addFavourite = async (e) => {
       console.error(err);
     }
   };
+
+const fetchFlag = async (e) => {
+  
+    try {
+      const response = await axios.post('https://soc-net.info/backend/flag.php', {
+        email: localStorage.getItem('userEmail')
+      });
+      //console.log(response.data)
+      if(response.data.success){
+	setFlag(true)
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+useEffect(()=>{
+	fetchFlag()
+},[])
   const addLike = async (e) => {
     let newArray = numbers.map(row => [...row]);
     newArray[currentIndex][1] = 2;
@@ -101,10 +121,10 @@ const block = async (e) => {
     const data = {
         country: choosenCountry,
         gender: choosenGender,
-        age : choosenAge,
+        age : parseInt(choosenAge),
         email:localStorage.getItem("userEmail")
       };
-      
+     //console.log(data)
       try {
     const response = await fetch('https://soc-net.info/backend/filter.php', {
       method: 'POST',
@@ -115,18 +135,19 @@ const block = async (e) => {
     });
 
     const result = await response.json(); // or text() depending on what PHP returns
-    
+    //console.log(result)
     if(result.length===0){
       alert('No Match Found!')
     }else{
       setUsers(result)
+      setCurrentIndex(0)
     }
     setShowPopup(false)
   } catch (error) {
     console.error('Error:', error);
   }
   }
-  const [choosenGender,setGender] = useState("female")
+  const [choosenGender,setGender] = useState("Female")
   const handleGenderChange = (e)=>{
     setGender(e.target.value)
   }
@@ -237,8 +258,8 @@ if (users.length === 0) {
     <span onClick={handleClickOutside} style={{fontSize:'1.5em',position:'absolute',color:'white',right:'15px',top:'15px'}}>X</span>
     <span style={{color:'white'}}>I am looking for a:</span><br/>
     <br/><select value={choosenGender} onChange={handleGenderChange}>
-      <option value="female">Female</option>      
-      <option value="male">Male</option>    
+      <option value="Female">Female</option>      
+      <option value="Male">Male</option>    
     </select><br/><br/>
     <span style={{color:'white'}}>who lives in:</span><br/>
     <br/><select value={choosenCountry} onChange={handleChange} name="country">
@@ -284,7 +305,7 @@ if (users.length === 0) {
             style={{ width: '100%', zIndex: '5', height: '100vh', position: 'absolute', objectFit: 'cover' }}
           />}
           <div style={{ position: 'absolute', width: '100%', margin: 'auto', zIndex: '10000', textAlign: 'center', lineHeight: '160vh' }}>
-            <i onClick={block} data-id={user.user.id} style={{color:'green',border:'1px solid green',padding:'10px',borderRadius:'50%',fontSize:'1.3em',fontWeight:'bold'}} class="fa-solid fa-xmark"></i>
+            <i onClick={block} data-id={user.user.id} style={{color:'green',border:'1px solid green',padding:'10px',borderRadius:'50%',fontSize:'1.3em',fontWeight:'bold'}} className="fa-solid fa-xmark"></i>
             <i 
             data-id={user.user.id} onClick={(e) => {
                     const newNumbers = numbers.map((row, index) =>
@@ -352,6 +373,7 @@ if (users.length === 0) {
         <Link to="/views"><i className="fa-solid fa-eye"></i></Link>
         <Link to="/favourite"><i className="fa-solid fa-star"></i></Link>
         <Link to="/like"><i className="fa-solid fa-heart"></i></Link>
+<Link style={{position:'relative'}} to='/messages'><i className="fa-solid fa-message"></i>{flag && <span style={{width:'8px',position:'absolute',borderRadius:'50%',left:'7px',bottom:'17px',top:'-2px',height:'8px',display:'block',backgroundColor:'red'}}></span>}</Link>
         <Link to="/personalInfo"><i className="fa-solid fa-user"></i></Link>
       </div>
     </div></>

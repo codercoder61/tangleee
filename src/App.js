@@ -11,6 +11,7 @@ import Views from './Views';
 import Favourite from './Favourite';
 import Like from './Like';
 import Chat from './Chat';
+import Messages from './Messages';
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useFirebaseNotifications } from "./useFirebaseNotifications";
@@ -21,6 +22,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
+	<Route path="/messages" element={<Messages />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/main" element={<Main />} />
         <Route path="/personalInfo" element={<PersonalInfo />} />

@@ -157,13 +157,32 @@ if(id && data && data2.id){
 {messages && userImages2 && currentUserImages && messages.map((elm, index) => (
   elm.id_reciever == id ? (
     <div style={{display:'flex',margin:'5px 0',alignItems:'center'}} key={elm.id}>
-      <img width='50' height='50' style={{objectFit:'cover',borderRadius:'50%',marginRight:'5px'}} src={`https://soc-net.info/backend/uploads/${userImages2[0]?.name}`} alt={`photo ${elm.id}`} />
+      <img
+  width="50"
+  height="50"
+  style={{
+    objectFit: 'cover',
+    borderRadius: '50%',
+    marginRight: '5px'
+  }}
+  src={
+    userImages2[0]?.name
+      ? `https://soc-net.info/backend/uploads/${userImages2[0].name}`
+      : 'https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg'
+  }
+  alt={`photo ${elm.id}`}
+/>
+
       <div style={{display:'flex',flexDirection:'column'}}><span style={{backgroundColor:'red',padding:'10px 20px',borderRadius:'25px'}}>{elm.messageContent}</span><span style={{fontSize:'0.6em'}}>{formatTime(elm.messageTime)}</span></div>
     </div>
   ) : (
     <div style={{display:'flex',margin:'5px 0',alignSelf:'flex-end',alignItems:'center'}} key={elm.id}>
       <div style={{display:'flex',flexDirection:'column'}}><span style={{backgroundColor:'pink',padding:'10px 20px',borderRadius:'25px'}}>{elm.messageContent}</span><span style={{fontSize:'0.6em'}}>{formatTime(elm.messageTime)}</span></div>
-<img width='50' height='50' style={{marginLeft:'10px',objectFit:'cover',borderRadius:'50%'}} src={`https://soc-net.info/backend/uploads/${currentUserImages[0]?.name}`} alt={`photo ${elm.id}`} />
+<img width='50' height='50' style={{marginLeft:'10px',objectFit:'cover',borderRadius:'50%'}} src={
+    currentUserImages[0]?.name
+      ? `https://soc-net.info/backend/uploads/${currentUserImages[0].name}`
+      : 'https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg'
+  } alt={`photo ${elm.id}`} />
     </div>
   )
 ))}
@@ -189,6 +208,7 @@ if(id && data && data2.id){
         <Link to="/views"><i className="fa-solid fa-eye"></i></Link>
         <Link to="/favourite"><i className="fa-solid fa-star"></i></Link>
         <Link to="/like"><i className="fa-solid fa-heart"></i></Link>
+<Link to={`/messages`}><i class="fa-solid fa-message"></i></Link>
         <Link to="/personalInfo"><i className="fa-solid fa-user"></i></Link>
       </div>
    </>

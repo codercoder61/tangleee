@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 function Info() {
   const { id } = useParams();
-  
+  const [flag,setFlag] = useState(false)
 
   const styles = {
   sliderContainer: {
@@ -50,6 +50,25 @@ function Info() {
     });
     
   }, []);
+const fetchFlag = async (e) => {
+  
+    try {
+      const response = await axios.post('https://soc-net.info/backend/flag.php', {
+        email: localStorage.getItem('userEmail')
+      });
+      console.log(response.data)
+      if(response.data.success){
+	setFlag(true)
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+useEffect(()=>{
+	fetchFlag()
+},[])
 useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % data2.length);
@@ -93,7 +112,7 @@ useEffect(() => {
         <Link to="/main"><i style={{color:'white'}} className="fa-solid fa-arrow-left"></i></Link>
         <span style={{position:'absolute',top:'50%',left: '50%',
           transform: 'translate(-50%, -50%)',color:'white'}}>{data && data[0] && data[0].name}</span>
-        
+        <Link to={`/chat/${data && data[0] && data[0].id}`}><i className="fa-solid fa-message"></i></Link>
       </div>
       <div style={styles.sliderContainer}><div
         style={{
@@ -158,6 +177,8 @@ useEffect(() => {
               <Link to="/views"><i className="fa-solid fa-eye"></i></Link>
               <Link to="/favourite"><i className="fa-solid fa-star"></i></Link>
               <Link to="/like"><i className="fa-solid fa-heart"></i></Link>
+<Link style={{position:'relative'}} to='/messages'><i className="fa-solid fa-message"></i>{flag && <span style={{width:'8px',position:'absolute',borderRadius:'50%',left:'7px',bottom:'17px',top:'-2px',height:'8px',display:'block',backgroundColor:'red'}}></span>}</Link>
+
               <Link to="/personalInfo"><i style={{color:'white'}} className="fa-solid fa-user"></i></Link>
       </div>
     </div>

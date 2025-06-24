@@ -1,8 +1,3 @@
-// Give the service worker access to Firebase Messaging.
-// Note that you can only use Firebase Messaging here. Other Firebase libraries
-// are not available in the service worker.
-// Replace 10.13.2 with latest version of the Firebase JS SDK.
-console.log('[🔥 Mohamed] My custom service worker is running!');
 
 importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js');
@@ -27,7 +22,7 @@ const messaging = firebase.messaging();
 self.addEventListener('push', event => {
   if (event.data) {
     const data = event.data.json();
-    console.log('[🔥 Mohamed] Push received in custom SW:', data);
+    
 
     const title = data.data.title || 'Default';
     const options = {
@@ -38,9 +33,7 @@ self.addEventListener('push', event => {
     event.waitUntil(
       self.registration.showNotification(title, options)
     );
-  } else {
-    console.log('[🔥 Mohamed] Push received with no data');
-  }
+  } 
 });
 
 
