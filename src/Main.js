@@ -101,7 +101,7 @@ const block = async (e) => {
     const data = {
         country: choosenCountry,
         gender: choosenGender,
-        age : choosenAge,
+        age : parseInt(choosenAge),
         email:localStorage.getItem("userEmail")
       };
       console.log(
