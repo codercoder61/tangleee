@@ -133,7 +133,7 @@ const block = async (e) => {
     console.error('Error:', error);
   }
   }
-  const [choosenGender,setGender] = useState("female")
+  const [choosenGender,setGender] = useState("Female")
   const handleGenderChange = (e)=>{
     setGender(e.target.value)
   }
