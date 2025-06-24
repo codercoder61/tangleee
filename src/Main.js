@@ -237,8 +237,8 @@ if (users.length === 0) {
     <span onClick={handleClickOutside} style={{fontSize:'1.5em',position:'absolute',color:'white',right:'15px',top:'15px'}}>X</span>
     <span style={{color:'white'}}>I am looking for a:</span><br/>
     <br/><select value={choosenGender} onChange={handleGenderChange}>
-      <option value="female">Female</option>      
-      <option value="male">Male</option>    
+      <option value="Female">Female</option>      
+      <option value="Male">Male</option>    
     </select><br/><br/>
     <span style={{color:'white'}}>who lives in:</span><br/>
     <br/><select value={choosenCountry} onChange={handleChange} name="country">
