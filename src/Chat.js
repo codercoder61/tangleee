@@ -173,11 +173,11 @@ if(id && data && data2.id){
   alt={`photo ${elm.id}`}
 />
 
-      <div style={{display:'flex',flexDirection:'column'}}><span style={{backgroundColor:'red',padding:'10px 20px',borderRadius:'25px'}}>{elm.messageContent}</span><span style={{fontSize:'0.6em'}}>{formatTime(elm.messageTime)}</span></div>
+      <div style={{display:'flex',alignItems:'center',flexDirection:'column'}}><span style={{backgroundColor:'red',padding:'10px 20px',borderRadius:'25px'}}>{elm.messageContent}</span><span style={{fontSize:'0.6em'}}>{formatTime(elm.messageTime)}</span></div>
     </div>
   ) : (
     <div style={{display:'flex',margin:'5px 0',alignSelf:'flex-end',alignItems:'center'}} key={elm.id}>
-      <div style={{display:'flex',flexDirection:'column'}}><span style={{backgroundColor:'pink',padding:'10px 20px',borderRadius:'25px'}}>{elm.messageContent}</span><span style={{fontSize:'0.6em'}}>{formatTime(elm.messageTime)}</span></div>
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}><span style={{backgroundColor:'pink',padding:'10px 20px',borderRadius:'25px'}}>{elm.messageContent}</span><span style={{fontSize:'0.6em'}}>{formatTime(elm.messageTime)}</span></div>
 <img width='50' height='50' style={{marginLeft:'10px',objectFit:'cover',borderRadius:'50%'}} src={
     currentUserImages[0]?.name
       ? `https://soc-net.info/backend/uploads/${currentUserImages[0].name}`
