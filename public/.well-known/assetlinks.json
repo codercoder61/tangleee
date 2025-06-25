@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.tangleee.twa",
+        "sha256_cert_fingerprints": ["A2:9D:B5:70:DD:63:90:4E:A4:6C:45:CA:EF:09:68:3A:57:8F:23:E3:64:32:BC:DE:AB:B8:BD:F1:90:D4:F5:6F"]
+      }
+    }]
