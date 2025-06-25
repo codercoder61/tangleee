@@ -2,7 +2,7 @@
   "name": "tanglee",
   "short_name": "tanglee",
   "description": "A simple dating app.",
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#f36e6e",
