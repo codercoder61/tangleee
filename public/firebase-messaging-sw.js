@@ -52,6 +52,28 @@ self.addEventListener('notificationclick', function(event) {
     })
   );
 });
+const CACHE_NAME = "tanglee-cache-v1";
+const urlsToCache = ["/", "/logo.png"];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    fetch(event.request).catch(() =>
+      caches.match(event.request).then((response) => {
+        if (response) return response;
+        // fallback to index.html for SPA
+        if (event.request.mode === "navigate") {
+          return caches.match("/");
+        }
+      })
+    )
+  );
+});
 
 
 //528922930690-bbqv5umaeclikvp1ga6cu16otu6da7rs.apps.googleusercontent.com
