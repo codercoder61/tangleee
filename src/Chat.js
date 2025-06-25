@@ -150,7 +150,7 @@ if(id && data && data2.id){
 
   return (
     <>
-  	<div style={{display:'flex',fontWeight:'bold',justifyContent:'space-between',backgroundColor:'rgba(255,150,150,0.2)',color:'#fff',padding:'20px'}}>*
+  	<div style={{display:'flex',fontWeight:'bold',justifyContent:'space-between',backgroundColor:'rgba(255,150,150,0.2)',color:'#fff',padding:'20px'}}>
 	<Link to="/main"><i style={{color:'white'}} className="fa-solid fa-arrow-left"></i></Link>
 	<span>Chat with : {data && name}</span></div>
 
