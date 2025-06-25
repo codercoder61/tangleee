@@ -2,19 +2,19 @@
   "name": "tanglee",
   "short_name": "tanglee",
   "description": "A simple dating app.",
-  "start_url": "https://tangleee.vercel.app/index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#f36e6e",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "/logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "logo.png",
+      "src": "/logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
