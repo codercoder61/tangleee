@@ -117,36 +117,54 @@ const block = async (e) => {
   const handleChange = (e)=>{
     setCountrie(e.target.value)
   }
-  const handleSubmit = async ()=>{
-    const data = {
-        country: choosenCountry,
-        gender: choosenGender,
-        age : parseInt(choosenAge),
-        email:localStorage.getItem("userEmail")
-      };
+  const handleSubmit = async () => {
+  const email = localStorage.getItem("userEmail");
 
-      try {
-    const response = await fetch('https://soc-net.info/backend/filter.php', {
-      method: 'POST',
+  if (!email) {
+    alert("User email is missing");
+    return;
+  }
+
+  const data = {
+    country: choosenCountry,
+    gender: choosenGender,
+    age: parseInt(choosenAge),
+    email: email,
+  };
+
+  try {
+    const response = await fetch("https://soc-net.info/backend/filter.php", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
 
-    const result = await response.json(); // or text() depending on what PHP returns
+    const text = await response.text();
+    let result;
 
-    if(result.length===0){
-      alert('No Match Found!')
-    }else{
-      setUsers(result)
-      setCurrentIndex(0)
+    try {
+      result = JSON.parse(text);
+    } catch (err) {
+      console.error("Failed to parse JSON:", text);
+      alert("Unexpected response from server");
+      return;
     }
-    setShowPopup(false)
+
+    if (Array.isArray(result) && result.length === 0) {
+      alert("No Match Found!");
+    } else {
+      setUsers(result);
+      setCurrentIndex(0);
+      setShowPopup(false);
+    }
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
+    alert("Request failed. Please try again.");
   }
-  }
+};
+
   const [choosenGender,setGender] = useState("Female")
   const handleGenderChange = (e)=>{
     setGender(e.target.value)
