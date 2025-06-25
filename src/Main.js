@@ -124,7 +124,18 @@ const block = async (e) => {
         age : parseInt(choosenAge),
         email:localStorage.getItem("userEmail")
       };
+<<<<<<< HEAD
      //console.log(data)
+=======
+      console.log(
+	      {
+        country: choosenCountry,
+        gender: choosenGender,
+        age : choosenAge,
+        email:localStorage.getItem("userEmail")
+      }
+      )
+>>>>>>> db81dadc73484c8b3611698c6372335eec7d8a67
       try {
     const response = await fetch('https://soc-net.info/backend/filter.php', {
       method: 'POST',
@@ -135,7 +146,11 @@ const block = async (e) => {
     });
 
     const result = await response.json(); // or text() depending on what PHP returns
+<<<<<<< HEAD
     //console.log(result)
+=======
+    console.log(result)
+>>>>>>> db81dadc73484c8b3611698c6372335eec7d8a67
     if(result.length===0){
       alert('No Match Found!')
     }else{
