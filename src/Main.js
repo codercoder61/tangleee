@@ -124,18 +124,7 @@ const block = async (e) => {
         age : parseInt(choosenAge),
         email:localStorage.getItem("userEmail")
       };
-<<<<<<< HEAD
-     //console.log(data)
-=======
-      console.log(
-	      {
-        country: choosenCountry,
-        gender: choosenGender,
-        age : choosenAge,
-        email:localStorage.getItem("userEmail")
-      }
-      )
->>>>>>> db81dadc73484c8b3611698c6372335eec7d8a67
+
       try {
     const response = await fetch('https://soc-net.info/backend/filter.php', {
       method: 'POST',
