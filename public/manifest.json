@@ -33,5 +33,67 @@
     "lifestyle",
     "photo",
     "social"
+  ],
+  "screenshots": [
+    {
+      "src": "/1.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/2.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/3.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/4.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/5.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/6.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/7.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/8.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/9.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/10.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/11.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    },
+    {
+      "src": "/12.PNG",
+      "sizes": "540x960",
+      "type": "image/png"
+    }
   ]
 }
