@@ -157,6 +157,7 @@ const block = async (e) => {
     } else {
       setUsers(result);
       setCurrentIndex(0);
+	  setNumbers(Array.from({ length: response.data.length }, () => [1, 1]))
       setShowPopup(false);
     }
   } catch (error) {
