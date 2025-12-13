@@ -323,7 +323,7 @@ if (users.length === 0) {
             alt={`person${user.user.id}`}
             style={{ width: '100%', zIndex: '5', height: '100vh', position: 'absolute', objectFit: 'cover' }}
           />}
-          <div style={{ position: 'absolute', width: '100%', margin: 'auto', zIndex: '10000', textAlign: 'center', lineHeight: '160vh' }}>
+          <div id='papere' style={{ position: 'absolute', width: '100%', margin: 'auto', zIndex: '10000', textAlign: 'center', lineHeight: '160vh' }}>
             <i onClick={block} data-id={user.user.id} style={{color:'green',border:'1px solid green',padding:'10px',borderRadius:'50%',fontSize:'1.3em',fontWeight:'bold'}} className="fa-solid fa-xmark"></i>
             <i 
             data-id={user.user.id} onClick={(e) => {
