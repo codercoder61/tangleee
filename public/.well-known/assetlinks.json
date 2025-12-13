@@ -1,8 +1,11 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "app.vercel.tangleee.twa",
-        "sha256_cert_fingerprints": ["5D:BC:C0:67:6B:ED:BF:4F:97:EB:B6:0E:4D:8A:5F:4C:BD:47:20:D3:9B:E0:FB:2B:11:4B:B0:83:71:BA:C6:E6"]
-      }
-    }]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vercel.tangleee.twa",
+      "sha256_cert_fingerprints":
+        ["5D:BC:C0:67:6B:ED:BF:4F:97:EB:B6:0E:4D:8A:5F:4C:BD:47:20:D3:9B:E0:FB:2B:11:4B:B0:83:71:BA:C6:E6"]
+    }
+  }
+]
