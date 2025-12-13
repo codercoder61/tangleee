@@ -17,7 +17,6 @@ import axios from 'axios';
 import { useFirebaseNotifications } from "./useFirebaseNotifications";
 
 function App() {
-	useFirebaseNotifications();
   return (
     <Router>
       <Routes>
