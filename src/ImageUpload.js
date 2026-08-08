@@ -10,11 +10,11 @@ function ImageUpload() {
    const handleFetch = async () => {
     setData(null);
     try {
-      const response = await axios.post('https://soc-net.info/backend/getUserImages.php', {
-        id: localStorage.getItem("userId")
+      const response = await axios.post('http://localhost/tanglee/getUserImagesTwo.php', {
+        email: localStorage.getItem("userEmail")
       });
       //response);
-      setData(response.data);
+      setData(response.data.images);
     } catch (err) {
       console.error(err);
     }
@@ -24,7 +24,6 @@ function ImageUpload() {
     handleFetch()
   },[])
 
-      const [image, setImage] = useState(null);
 
       const handleFileChange = async (e) => {
   const file = e.target.files[0];
@@ -32,7 +31,6 @@ function ImageUpload() {
   //e.target.files);
   //'Selected file:', file);
 
-  setImage(file);
 
   // Immediately upload after selecting file
   const formData = new FormData();
@@ -40,7 +38,7 @@ function ImageUpload() {
   formData.append('id', localStorage.getItem("userId") || 1); // fallback id
 
   try {
-    const response = await axios.post('https://soc-net.info/backend/upload.php', formData, {
+    await axios.post('http://localhost/tanglee/upload.php', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -80,7 +78,7 @@ function ImageUpload() {
             {
   data && data.map((elm) => (
     <img
-      src={`https://soc-net.info/backend/uploads/${elm.name}`}
+      src={`http://localhost/tanglee/uploads/${elm.name}`}
       alt={elm.name}
       key={elm.id}
       style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '0px 5px 5px' }}
