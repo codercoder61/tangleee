@@ -17,10 +17,10 @@ const [flag,setFlag] = useState(false)
 const fetchFlag = async (e) => {
   
     try {
-      const response = await axios.post('https://soc-net.info/backend/flag.php', {
+      const response = await axios.post('http://localhost/tanglee/flag.php', {
         email: localStorage.getItem('userEmail')
       });
-      //console.log(response.data)
+      ////(response.data)
       if(response.data.success){
 	setFlag(true)
       }
@@ -41,7 +41,7 @@ useEffect(()=>{
       getLikers()
     },[])
   const  getLiked = async () =>{
-          const response = await axios.post('https://soc-net.info/backend/getLiked.php', {
+          const response = await axios.post('http://localhost/tanglee/getLiked.php', {
                 email: localStorage.getItem('userEmail'),
               });
   
@@ -49,7 +49,7 @@ useEffect(()=>{
             setLikedUsers(response.data)
       }
     const  getLikers = async () =>{
-          const response = await axios.post('https://soc-net.info/backend/getLikers.php', {
+          const response = await axios.post('http://localhost/tanglee/getLikers.php', {
                 email: localStorage.getItem('userEmail'),
               });
   
@@ -65,11 +65,11 @@ useEffect(()=>{
       </div>
       {!toggle && <div style={{width:'100%',marginTop:'65px',display:'flex',flexWrap:'wrap'}}>
         {likedUsers && likedUsers.map((elm, index) => (
-            <div onClick={()=>{navigate(`/info/${elm.user.id}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px' }}>
-          {elm.image && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`https://soc-net.info/backend/uploads/${elm.image.name}`} alt={`Person ${index}`} />}
+            <div onClick={()=>{navigate(`/info/${elm.id}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px' }}>
+          {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`http://localhost/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
           
             <div style={{position: 'absolute', bottom: '10px', left: '10px', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)',fontSize:'0.6em', padding:'5px'}}>
-                {elm.user.name} {elm.user.city},{elm.user.country}
+                {elm.name} {elm.city},{elm.country}
             </div>
           
             </div>
@@ -77,11 +77,11 @@ useEffect(()=>{
       </div>}
       {toggle && <div style={{width:'100%',marginTop:'65px',display:'flex',flexWrap:'wrap'}}>
         {likerUsers && likerUsers.map((elm, index) => (
-            <div onClick={()=>{navigate(`/info/${elm.user.id}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px' }}>
-          {elm.image && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`https://soc-net.info/backend/uploads/${elm.image.name}`} alt={`Person ${index}`} />}
+            <div onClick={()=>{navigate(`/info/${elm.id}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px' }}>
+          {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`http://localhost/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
           
             <div style={{position: 'absolute', bottom: '10px', left: '10px', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)',fontSize:'0.6em', padding:'5px'}}>
-                {elm.user.name} {elm.user.city},{elm.user.country}
+                {elm.name} {elm.city},{elm.country}
             </div>
           
             </div>
