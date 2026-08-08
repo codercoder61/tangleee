@@ -251,14 +251,17 @@ function Main() {
   //(users[currentIndex])
   const user = users[currentIndex];
   useEffect(() => {
-  if (!users) return;
+  console.log("users:", users);
+  console.log("isArray:", Array.isArray(users));
+
+  if (!Array.isArray(users)) return;
 
   setNumbers((prevNumbers) => {
-    if (!prevNumbers) return prevNumbers;
+    if (!Array.isArray(prevNumbers)) return prevNumbers;
 
     const updatedNumbers = prevNumbers.map((row) => [...row]);
-if(users.length>0){
-  users.forEach((elm, index) => {
+
+    users.forEach((elm, index) => {
       if (!updatedNumbers[index]) return;
 
       if (elm.flag1 === 1) {
@@ -270,8 +273,6 @@ if(users.length>0){
       }
     });
 
-}
-    
     return updatedNumbers;
   });
 }, [users]);
