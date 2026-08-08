@@ -286,8 +286,8 @@ function Chat() {
                     borderRadius: "50%",
                   }}
                   src={
-                    currentUserImages?.name
-                      ? `https://pneuexpress.online/tanglee/uploads/${currentUserImages.name}`
+                    currentUserImages.images[0]?.name
+                      ? `https://pneuexpress.online/tanglee/uploads/${currentUserImages.images[0]?.name}`
                       : "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg"
                   }
                   alt={`${elm.id}`}
