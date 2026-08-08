@@ -17,7 +17,7 @@ const [flag,setFlag] = useState(false)
 const fetchFlag = async (e) => {
   
     try {
-      const response = await axios.post('http://localhost/tanglee/flag.php', {
+      const response = await axios.post('https://pneuexpress.online/tanglee/flag.php', {
         email: localStorage.getItem('userEmail')
       });
       ////(response.data)
@@ -41,7 +41,7 @@ useEffect(()=>{
       getLikers()
     },[])
   const  getLiked = async () =>{
-          const response = await axios.post('http://localhost/tanglee/getLiked.php', {
+          const response = await axios.post('https://pneuexpress.online/tanglee/getLiked.php', {
                 email: localStorage.getItem('userEmail'),
               });
   
@@ -49,7 +49,7 @@ useEffect(()=>{
             setLikedUsers(response.data)
       }
     const  getLikers = async () =>{
-          const response = await axios.post('http://localhost/tanglee/getLikers.php', {
+          const response = await axios.post('https://pneuexpress.online/tanglee/getLikers.php', {
                 email: localStorage.getItem('userEmail'),
               });
   
@@ -66,7 +66,7 @@ useEffect(()=>{
       {!toggle && <div style={{width:'100%',marginTop:'65px',display:'flex',flexWrap:'wrap'}}>
         {likedUsers && likedUsers.map((elm, index) => (
             <div onClick={()=>{navigate(`/info/${elm.id}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px' }}>
-          {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`http://localhost/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
+          {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`https://pneuexpress.online/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
           
             <div style={{position: 'absolute', bottom: '10px', left: '10px', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)',fontSize:'0.6em', padding:'5px'}}>
                 {elm.name} {elm.city},{elm.country}
@@ -78,7 +78,7 @@ useEffect(()=>{
       {toggle && <div style={{width:'100%',marginTop:'65px',display:'flex',flexWrap:'wrap'}}>
         {likerUsers && likerUsers.map((elm, index) => (
             <div onClick={()=>{navigate(`/info/${elm.id}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px' }}>
-          {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`http://localhost/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
+          {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} src={`https://pneuexpress.online/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
           
             <div style={{position: 'absolute', bottom: '10px', left: '10px', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)',fontSize:'0.6em', padding:'5px'}}>
                 {elm.name} {elm.city},{elm.country}
