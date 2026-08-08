@@ -36,7 +36,7 @@ function Info() {
     const [currentIndex, setCurrentIndex] = useState(0);
     useEffect(() => {
     
-    axios.post('http://localhost/tanglee/getUserData.php', {
+    axios.post('https://pneuexpress.online/tanglee/getUserData.php', {
       id: parseInt(id)
     })
     .then(response => {
@@ -53,7 +53,7 @@ function Info() {
 const fetchFlag = async (e) => {
   
     try {
-      const response = await axios.post('http://localhost/tanglee/flag.php', {
+      const response = await axios.post('https://pneuexpress.online/tanglee/flag.php', {
         email: localStorage.getItem('userEmail')
       });
       //(response.data)
@@ -82,7 +82,7 @@ useEffect(() => {
 
   const handleFetch = async () => {
     try {
-      const response = await axios.post('http://localhost/tanglee/getUserImagesTwo.php', {
+      const response = await axios.post('https://pneuexpress.online/tanglee/getUserImagesTwo.php', {
         email: localStorage.getItem("userEmail")
       });
       //response);
@@ -98,7 +98,7 @@ useEffect(() => {
 
   const handleFetch2 = async () => {
     try {
-      await axios.post('http://localhost/tanglee/addView.php', {
+      await axios.post('https://pneuexpress.online/tanglee/addView.php', {
         id_viewed: parseInt(id),
         email_viewer: localStorage.getItem('userEmail')
       });
@@ -125,7 +125,7 @@ useEffect(() => {
         }}
       >
         {data23 && data23.map((src, index) => (
-          <img key={index} src={`http://localhost/tanglee/uploads/${src.name}`} alt={`Slide ${index}`} style={styles.image} />
+          <img key={index} src={`https://pneuexpress.online/tanglee/uploads/${src.name}`} alt={`Slide ${index}`} style={styles.image} />
         ))}
       </div></div>
       <div style={{padding:'20px',marginTop:'20px',color:'white',fontWeight:'bold'}}>
