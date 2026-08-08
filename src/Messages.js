@@ -7,7 +7,7 @@ function Messages() {
   const fetchFlag2 = async (e) => {
     try {
       await axios.post(
-        "http://localhost/tanglee/flagTrue.php",
+        "https://pneuexpress.online/tanglee/flagTrue.php",
         {
           email: localStorage.getItem("userEmail"),
         },
@@ -61,7 +61,7 @@ function Messages() {
   const fetchAllMessages = async (emailOrNumber) => {
     try {
       const res = await axios.post(
-        "http://localhost/tanglee/getAllUserMessages.php",
+        "https://pneuexpress.online/tanglee/getAllUserMessages.php",
         {
           emailOrNumber: emailOrNumber,
         },
@@ -104,7 +104,7 @@ function Messages() {
                   style={{ borderRadius: "50%", objectFit: "cover" }}
                   src={
                     elm.imageName
-                      ? `http://localhost/tanglee/uploads/${elm.imageName}`
+                      ? `https://pneuexpress.online/tanglee/uploads/${elm.imageName}`
                       : "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg"
                   }
                   width={50}
