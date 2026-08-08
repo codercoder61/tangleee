@@ -42,7 +42,7 @@ function SignUp() {
 
     try {
         const response = await axios.post(
-            "http://localhost/tanglee/addUser.php",
+            "https://pneuexpress.online/tanglee/addUser.php",
             {
                 name: name ?? "",
                 age: age ?? "",
