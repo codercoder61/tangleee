@@ -10,7 +10,7 @@ function ImageUpload() {
    const handleFetch = async () => {
     setData(null);
     try {
-      const response = await axios.post('http://localhost/tanglee/getUserImagesTwo.php', {
+      const response = await axios.post('https://pneuexpress.online/tanglee/getUserImagesTwo.php', {
         email: localStorage.getItem("userEmail")
       });
       //response);
@@ -38,7 +38,7 @@ function ImageUpload() {
   formData.append('id', localStorage.getItem("userId") || 1); // fallback id
 
   try {
-    await axios.post('http://localhost/tanglee/upload.php', formData, {
+    await axios.post('https://pneuexpress.online/tanglee/upload.php', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -78,7 +78,7 @@ function ImageUpload() {
             {
   data && data.map((elm) => (
     <img
-      src={`http://localhost/tanglee/uploads/${elm.name}`}
+      src={`https://pneuexpress.online/tanglee/uploads/${elm.name}`}
       alt={elm.name}
       key={elm.id}
       style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '0px 5px 5px' }}
