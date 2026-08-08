@@ -16,7 +16,7 @@ function Main() {
     e.stopPropagation(); // 🚫 prevent parent click
     try {
       await axios.post(
-        "http://localhost/tanglee/addFavourite.php",
+        "https://pneuexpress.online/tanglee/addFavourite.php",
         {
           id_added: parseInt(e.target.dataset.id),
           email_viewer: localStorage.getItem("userEmail"),
@@ -31,7 +31,7 @@ function Main() {
   const fetchFlag = async (e) => {
     try {
       const response = await axios.post(
-        "http://localhost/tanglee/flag.php",
+        "https://pneuexpress.online/tanglee/flag.php",
         {
           email: localStorage.getItem("userEmail"),
         },
@@ -55,7 +55,7 @@ function Main() {
     e.stopPropagation(); // 🚫 prevent parent click
     try {
       await axios.post(
-        "http://localhost/tanglee/addLike.php",
+        "https://pneuexpress.online/tanglee/addLike.php",
         {
           id_liked: parseInt(e.target.dataset.id),
           email_viewer: localStorage.getItem("userEmail"),
@@ -71,7 +71,7 @@ function Main() {
     e.stopPropagation(); // 🚫 prevent parent click
     try {
       await axios.post(
-        "http://localhost/tanglee/block.php",
+        "https://pneuexpress.online/tanglee/block.php",
         {
           id_blocked: parseInt(e.target.dataset.id),
           email_blocker: localStorage.getItem("userEmail"),
@@ -91,7 +91,7 @@ function Main() {
     e.stopPropagation(); // 🚫 prevent parent click
     try {
       await axios.post(
-        "http://localhost/tanglee/deleteLike.php",
+        "https://pneuexpress.online/tanglee/deleteLike.php",
         {
           id_liked: e.target.dataset.id,
           email_viewer: localStorage.getItem("userEmail"),
@@ -110,7 +110,7 @@ function Main() {
     e.stopPropagation(); // 🚫 prevent parent click
     try {
       await axios.post(
-        "http://localhost/tanglee/deleteFavourite.php",
+        "https://pneuexpress.online/tanglee/deleteFavourite.php",
         {
           id_added: e.target.dataset.id,
           email_viewer: localStorage.getItem("userEmail"),
@@ -143,7 +143,7 @@ function Main() {
     };
 
     try {
-      const response = await fetch("http://localhost/tanglee/filter.php", {
+      const response = await fetch("https://pneuexpress.online/tanglee/filter.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -195,7 +195,7 @@ function Main() {
   const [countries, setCountries] = useState([]);
   const getUsers = async () => {
     const response = await axios.post(
-      "http://localhost/tanglee/getUsers.php",
+      "https://pneuexpress.online/tanglee/getUsers.php",
       {
         email: localStorage.getItem("userEmail"),
       },
@@ -206,7 +206,7 @@ function Main() {
   };
   const getCountries = async () => {
     const response = await axios.post(
-      "http://localhost/tanglee/getCountries.php",
+      "https://pneuexpress.online/tanglee/getCountries.php",
       {
         email: localStorage.getItem("userEmail"),
       },
@@ -510,7 +510,7 @@ function Main() {
             </div>
             {user.image && user.image.name && (
               <img
-                src={`http://localhost/tanglee/uploads/${user.image.name}`}
+                src={`https://pneuexpress.online/tanglee/uploads/${user.image.name}`}
                 alt={`person${user && user.id}`}
                 style={{
                   width: "100%",
