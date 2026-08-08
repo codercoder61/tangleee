@@ -75,7 +75,7 @@ function Chat() {
     try {
       // 1. Get Other User's Data
       const userDataRes = await axios.post(
-        "http://localhost/tanglee/getUserData.php",
+        "https://pneuexpress.online/tanglee/getUserData.php",
         { id },
       );
       setData(userDataRes.data);
@@ -83,7 +83,7 @@ function Chat() {
       //(userDataRes.data);
       // 2. Get Other User's Images
       const userImagesRes = await axios.post(
-  "http://localhost/tanglee/getUserImages.php",
+  "https://pneuexpress.online/tanglee/getUserImages.php",
   {
     id: parseInt(id),
   }
@@ -94,7 +94,7 @@ function Chat() {
       // // 3. Get Current User's Data
       const userEmail = localStorage.getItem("userEmail");
       const currentUserRes = await axios.post(
-        "http://localhost/tanglee/getUserData.php",
+        "https://pneuexpress.online/tanglee/getUserData.php",
         { email: userEmail },
       );
       const currentUserData = currentUserRes.data;
@@ -102,7 +102,7 @@ function Chat() {
 
       // // 4. Get Current User's Images
       const currentUserImagesRes = await axios.post(
-        "http://localhost/tanglee/getUserImages.php",
+        "https://pneuexpress.online/tanglee/getUserImages.php",
         { id: currentUserData.id },
       );
 
@@ -116,7 +116,7 @@ function Chat() {
   const fetchMessages = async (id_res, id_send) => {
     try {
       const messagesRes = await axios.post(
-        "http://localhost/tanglee/getMessages.php",
+        "https://pneuexpress.online/tanglee/getMessages.php",
         {
           idOne: parseInt(id_res), // Replace with actual logic
           idTwo: id_send,
@@ -141,7 +141,7 @@ function Chat() {
     if (message.trim() !== "") {
       try {
         await axios.post(
-          "http://localhost/tanglee/addMsg.php",
+          "https://pneuexpress.online/tanglee/addMsg.php",
           {
             id_res: parseInt(id), // Receiver ID from route or state
             id_send: data2.id, // Sender ID (current user)
@@ -220,7 +220,7 @@ function Chat() {
                   }}
                   src={
                     userImages2 && userImages2.images[0]?.name
-                      ? `http://localhost/tanglee/uploads/${userImages2.images[0].name}`
+                      ? `https://pneuexpress.online/tanglee/uploads/${userImages2.images[0].name}`
                       : "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg"
                   }
                   alt={`${elm.id}`}
@@ -287,7 +287,7 @@ function Chat() {
                   }}
                   src={
                     currentUserImages?.name
-                      ? `http://localhost/tanglee/uploads/${currentUserImages.name}`
+                      ? `https://pneuexpress.online/tanglee/uploads/${currentUserImages.name}`
                       : "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg"
                   }
                   alt={`${elm.id}`}
