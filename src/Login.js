@@ -64,7 +64,7 @@ function Login() {
             }}
             className={email !== "" ? "apply field" : "field"}
           >
-            Email / Phone Number
+            Email
           </div>
         </div>
         <div style={{ position: "relative" }}>
