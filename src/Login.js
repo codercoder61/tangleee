@@ -22,7 +22,7 @@ function Login() {
     //(email, password)
     try {
       const response = await axios.post(
-        "http://localhost/tanglee/auth.php",
+        "https://pneuexpress.online/tanglee/auth.php",
         {
           email: email,
           password: password,
