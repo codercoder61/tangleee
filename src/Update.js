@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 function Update() {
 //const [data, setData] = useState([]);
     useEffect(() => {
-        axios.post('http://localhost/tanglee/getUserData.php', {
+        axios.post('https://pneuexpress.online/tanglee/getUserData.php', {
           email: localStorage.getItem("userEmail")
         })
         .then(response => {
@@ -163,7 +163,7 @@ const handleLanguageChange = (event)=>{
   e.preventDefault();
 
   try {
-    await axios.post('http://localhost/tanglee/updateUser.php', {
+    await axios.post('https://pneuexpress.online/tanglee/updateUser.php', {
       email:localStorage.getItem("userEmail"),
       name: name,
       age: age,
