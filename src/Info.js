@@ -108,7 +108,7 @@ const handleFetch = async () => {
   };
 
   handleFetch2();
-}, [id,handleFetch]);
+}, [id]);
   
   return (
     <div>
