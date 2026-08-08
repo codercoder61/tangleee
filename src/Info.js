@@ -80,7 +80,10 @@ useEffect(() => {
 
 
 
-  const handleFetch = async () => {
+  
+
+  useEffect(() => {
+const handleFetch = async () => {
     try {
       const response = await axios.post('https://pneuexpress.online/tanglee/getUserImagesTwo.php', {
         id: id
@@ -91,9 +94,6 @@ useEffect(() => {
       console.error(err);
     }
   };
-
-  useEffect(() => {
-
   handleFetch();
 
   const handleFetch2 = async () => {
