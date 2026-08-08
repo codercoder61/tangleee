@@ -257,8 +257,8 @@ function Main() {
     if (!prevNumbers) return prevNumbers;
 
     const updatedNumbers = prevNumbers.map((row) => [...row]);
-
-    users.forEach((elm, index) => {
+if(users.length>0){
+  users.forEach((elm, index) => {
       if (!updatedNumbers[index]) return;
 
       if (elm.flag1 === 1) {
@@ -270,6 +270,8 @@ function Main() {
       }
     });
 
+}
+    
     return updatedNumbers;
   });
 }, [users]);
