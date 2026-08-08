@@ -9,6 +9,7 @@ function SignUp() {
     const navigate = useNavigate();
     const [name,setName] = useState("")
     const [age,setAge] = useState("")
+     const [flag, setFlag] = useState(false);
    
     const [phoneNumber,setPhoneNumber] = useState("")
     const [email,setEmail] = useState("")
@@ -35,24 +36,41 @@ function SignUp() {
  
    
     const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const response = await axios.post('https://soc-net.info/backend/addUser.php', {
-      name: name,
-      age: age,
-      
-      phoneNumber: phoneNumber,
-      email: email,
-      password: password,
-     
-     
-    });
-   
-      navigate('/');
-  } catch (error) {
-    console.error('Error sending data:', error);
-  }
+    //("SUBMIT STARTED");
+
+    try {
+        const response = await axios.post(
+            "http://localhost/tanglee/addUser.php",
+            {
+                name: name ?? "",
+                age: age ?? "",
+                phoneNumber: phoneNumber ?? "",
+                email: email ?? "",
+                password: password ?? ""
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+        //("AXIOS RESPONSE:", response);
+        //("SERVER DATA:", response.data);
+
+        if (response.data.success !== false) {
+            localStorage.setItem("userEmail", email);
+            navigate("/");
+        }
+    } catch (error) {
+      setFlag(true);
+        console.error("AXIOS ERROR:", error);
+        console.error("ERROR RESPONSE:", error.response);
+        console.error("ERROR DATA:", error.response?.data);
+        console.error("ERROR STATUS:", error.response?.status);
+    }
 };
 
   return (
@@ -61,32 +79,32 @@ function SignUp() {
       <img width='150' src={Logo2} alt="logo"/>
       <form onSubmit={handleSubmit}>
         <div style={{position:"relative"}}>
-            <input required value={name} onChange={handleNameChange} type="text" name="name"/>
+            <input  value={name} onChange={handleNameChange} type="text" name="name"/>
             <div onClick={(e)=>{
 	e.target.previousElementSibling.focus();
 }} className={name!==""?"apply field":"field"}>Name</div>
         </div>
         <div style={{position:"relative"}}>
-            <input required value={age} onChange={handleAgeChange} type="text" name="age"/>
+            <input  value={age} onChange={handleAgeChange} type="text" name="age"/>
             <div onClick={(e)=>{
 	e.target.previousElementSibling.focus();
 }} className={age!==""?"apply field":"field"}>Age</div>
         </div>
         
         <div style={{position:"relative"}}>
-            <input required value={phoneNumber} onChange={handlePhoneNumberChange} type="text" name="phoneNumber"/>
+            <input  value={phoneNumber} onChange={handlePhoneNumberChange} type="text" name="phoneNumber"/>
             <div onClick={(e)=>{
 	e.target.previousElementSibling.focus();
 }} className={phoneNumber!==""?"apply field":"field"}>Phone number</div>
         </div>
         <div style={{position:"relative"}}>
-            <input required value={email} onChange={handleEmailChange} type="text" name="email"/>
+            <input  value={email} onChange={handleEmailChange} type="text" name="email"/>
             <div onClick={(e)=>{
 	e.target.previousElementSibling.focus();
 }} className={email!==""?"apply field":"field"}>Email</div>
         </div>
         <div style={{position:"relative"}}>
-            <input required value={password} onChange={handlePasswordChange} type="password" name="password"/>
+            <input  value={password} onChange={handlePasswordChange} type="password" name="password"/>
             <div onClick={(e)=>{
 	e.target.previousElementSibling.focus();
 }} className={password!==""?"apply field":"field"}>Password</div>
@@ -94,6 +112,7 @@ function SignUp() {
        
         
         <input style={{backgroundColor:"white",color:"#ee2a47",fontSize:"1.3em",fontWeight:"bold"}} type="submit" value="Sign Up" name="login"/>
+                {flag && <p style={{ color: "#fff" }}>Sorry , something went wrong.</p>}
         <p style={{fontWeight:'bold',margin:"10px 0 30px",color:"#fff",fontSize:"0.8em"}}>Already have an account?<Link to='/'><span style={{marginLeft:"5px",color:"#fff",fontSize:"1.4em"}}>Login Now</span></Link></p>
       </form>
     </div>
