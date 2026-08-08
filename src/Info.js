@@ -83,7 +83,7 @@ useEffect(() => {
   const handleFetch = async () => {
     try {
       const response = await axios.post('https://pneuexpress.online/tanglee/getUserImagesTwo.php', {
-        email: localStorage.getItem("userEmail")
+        id: id
       });
       //response);
       setData23(response.data.images);
