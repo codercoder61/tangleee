@@ -251,8 +251,6 @@ function Main() {
   //(users[currentIndex])
   const user = users[currentIndex];
   useEffect(() => {
-  console.log("users:", users);
-  console.log("isArray:", Array.isArray(users));
 
   if (!Array.isArray(users)) return;
 
