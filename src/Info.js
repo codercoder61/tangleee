@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 
 function Info() {
   const { id } = useParams();
   const [flag,setFlag] = useState(false)
+  const location = useLocation();
 
   const styles = {
   sliderContainer: {
@@ -32,12 +34,12 @@ function Info() {
   },
 };
     const [data, setData] = useState([]);
-    const [data2, setData2] = useState([]);
+    const [data23, setData23] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     useEffect(() => {
     
-    axios.post('https://soc-net.info/backend/getUserData.php', {
-      id: id
+    axios.post('http://localhost/tanglee/getUserData.php', {
+      id: parseInt(id)
     })
     .then(response => {
       //(response.data);
@@ -49,14 +51,14 @@ function Info() {
       console.error('Error posting data:', error);
     });
     
-  }, []);
+  }, [id]);
 const fetchFlag = async (e) => {
   
     try {
-      const response = await axios.post('https://soc-net.info/backend/flag.php', {
+      const response = await axios.post('http://localhost/tanglee/flag.php', {
         email: localStorage.getItem('userEmail')
       });
-      console.log(response.data)
+      //(response.data)
       if(response.data.success){
 	setFlag(true)
       }
@@ -71,48 +73,52 @@ useEffect(()=>{
 },[])
 useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % data2.length);
+      setCurrentIndex((prev) => (prev + 1) % data23.length);
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval); // Cleanup on unmount
-  }, [data2]);
+  }, [data23]);
+
+
+
 
   const handleFetch = async () => {
     try {
-      const response = await axios.post('https://soc-net.info/backend/getUserImages.php', {
-        id: id
+      const response = await axios.post('http://localhost/tanglee/getUserImagesTwo.php', {
+        email: localStorage.getItem("userEmail")
       });
       //response);
-      setData2(response.data);
+      setData23(response.data.images);
     } catch (err) {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+
+  handleFetch();
 
   const handleFetch2 = async () => {
     try {
-      const response = await axios.post('https://soc-net.info/backend/addView.php', {
-        id_viewed: id,
+      await axios.post('http://localhost/tanglee/addView.php', {
+        id_viewed: parseInt(id),
         email_viewer: localStorage.getItem('userEmail')
       });
-      //(response)
     } catch (err) {
       console.error(err);
     }
   };
 
-  useEffect(()=>{
-      handleFetch()
-      handleFetch2()
-    },[])
+  handleFetch2();
+}, [id]);
   
   return (
     <div>
       <div style={{textAlign:'center',background:'linear-gradient(to right, rgb(238, 42, 71), rgb(235, 200, 155))',zIndex:'5000',display:'flex',padding:'20px',justifyContent:"space-between",alignItems:'center',width:'100%',position:'fixed',right:'0',left:'0',top:"0"}}>
         <Link to="/main"><i style={{color:'white'}} className="fa-solid fa-arrow-left"></i></Link>
         <span style={{position:'absolute',top:'50%',left: '50%',
-          transform: 'translate(-50%, -50%)',color:'white'}}>{data && data[0] && data[0].name}</span>
-        <Link to={`/chat/${data && data[0] && data[0].id}`}><i className="fa-solid fa-message"></i></Link>
+          transform: 'translate(-50%, -50%)',color:'white'}}>{data && data && data.name}</span>
+        <Link to={`/chat/${data && data && data.id}`}><i className="fa-solid fa-message"></i></Link>
       </div>
       <div style={styles.sliderContainer}><div
         style={{
@@ -120,43 +126,43 @@ useEffect(() => {
           transform: `translateX(-${currentIndex * 100}%)`,
         }}
       >
-        {data2 && data2.map((src, index) => (
-          <img key={index} src={`https://soc-net.info/backend/uploads/${src.name}`} alt={`Slide ${index}`} style={styles.image} />
+        {data23 && data23.map((src, index) => (
+          <img key={index} src={`http://localhost/tanglee/uploads/${src.name}`} alt={`Slide ${index}`} style={styles.image} />
         ))}
       </div></div>
       <div style={{padding:'20px',marginTop:'20px',color:'white',fontWeight:'bold'}}>
         Personal Info:
         <hr style={{backgroundColor:"white",width:'100%',margin:'auto'}} />
         <div style={{margin:'20px 0',display:'flex',flexDirection:'column'}}>
-          <span>Name: {data && data[0] && data[0].name}</span>
-          <span>Age: {data && data[0] && data[0].age}</span>
-          <span>Number : {data && data[0] && data[0].number}</span>
-          <span>City: {data && data[0] && data[0].city}</span>
-          <span>Country: {data && data[0] && data[0].country}</span>
+          <span>Name: {data && data && data.name}</span>
+          <span>Age: {data && data && data.age}</span>
+          <span>Number : {data && data && data.number}</span>
+          <span>City: {data && data && data.city}</span>
+          <span>Country: {data && data && data.country}</span>
         </div>
         Appearance:
                 <hr style={{backgroundColor:"white",width:'100%',margin:'auto'}} />
         <div style={{margin:'20px 0',display:'flex',flexDirection:'column'}}>
-          <span>Height: {data && data[0] && data[0].height}</span>
-          <span>Weight: {data && data[0] && data[0].weight}</span>
-          <span>Body Type: {data && data[0] && data[0].bodyType}</span>
+          <span>Height: {data && data && data.height}</span>
+          <span>Weight: {data && data && data.weight}</span>
+          <span>Body Type: {data && data && data.bodyType}</span>
         </div>
 
         Life style:
         <hr style={{backgroundColor:"white",width:'100%',margin:'auto'}}/>
 
         <div style={{margin:'20px 0',display:'flex',flexDirection:'column'}}>
-          <span>Drink: {data && data[0] && data[0].drink}</span>
-          <span>Smoke: {data && data[0] && data[0].smoke}</span>
-          <span>Marital Status: {data && data[0] && data[0].maritalStatus}</span>
-          <span>Have Children: {data && data[0] && data[0].haveChildren}</span>
-          <span>Number of Children: {data && data[0] && data[0].numberOfChildren}</span>
-          <span>Profession: {data && data[0] && data[0].profession}</span>
-          <span>Employment Status: {data && data[0] && data[0].employmentStatus}</span>
-          <span>Income: {data && data[0] && data[0].income}</span>
-          <span>Living Situation: {data && data[0] && data[0].livingSituation}</span>
-          <span>Willing to Relocate: {data && data[0] && data[0].relocateWill}</span>
-          <span>Looking for: {data && data[0] && data[0].lookingFor}</span>
+          <span>Drink: {data && data && data.drink}</span>
+          <span>Smoke: {data && data && data.smoke}</span>
+          <span>Marital Status: {data && data && data.maritalStatus}</span>
+          <span>Have Children: {data && data && data.haveChildren}</span>
+          <span>Number of Children: {data && data && data.numberOfChildren}</span>
+          <span>Profession: {data && data && data.profession}</span>
+          <span>Employment Status: {data && data && data.employmentStatus}</span>
+          <span>Income: {data && data && data.income}</span>
+          <span>Living Situation: {data && data && data.livingSituation}</span>
+          <span>Willing to Relocate: {data && data && data.relocateWill}</span>
+          <span>Looking for: {data && data && data.lookingFor}</span>
 
         </div>
   
@@ -164,11 +170,11 @@ useEffect(() => {
         <hr style={{backgroundColor:"white",width:'100%',margin:'auto'}}/>
 
         <div style={{margin:'20px 0 60px',display:'flex',flexDirection:'column'}}>
-          <span>Nationality: {data && data[0] && data[0].nationality}</span>
-          <span>Education: {data && data[0] && data[0].education}</span>
-          <span>Language Spoken: {data && data[0] && data[0].spokenLanguage}</span>
-          <span>Religion: {data && data[0] && data[0].religion}</span>
-          <span>Ethnicity: {data && data[0] && data[0].ethnicity}</span>
+          <span>Nationality: {data && data && data.nationality}</span>
+          <span>Education: {data && data && data.education}</span>
+          <span>Language Spoken: {data && data && data.spokenLanguage}</span>
+          <span>Religion: {data && data && data.religion}</span>
+          <span>Ethnicity: {data && data && data.ethnicity}</span>
         </div>
   
       </div>
