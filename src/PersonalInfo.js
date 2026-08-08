@@ -8,7 +8,7 @@ function PersonalInfo() {
 
   const fetchFlag = async (e) => {
     try {
-      const response = await axios.post("http://localhost/tanglee/flag.php", {
+      const response = await axios.post("https://pneuexpress.online/tanglee/flag.php", {
         email: localStorage.getItem("userEmail"),
       });
       ////(response.data)
@@ -51,7 +51,7 @@ function PersonalInfo() {
   const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
     axios
-      .post("http://localhost/tanglee/getUserData.php", {
+      .post("https://pneuexpress.online/tanglee/getUserData.php", {
         email: localStorage.getItem("userEmail"),
       })
       .then((response) => {
@@ -75,7 +75,7 @@ function PersonalInfo() {
   const handleFetch = async () => {
     try {
       const response = await axios.post(
-        "http://localhost/tanglee/getUserImagesTwo.php",
+        "https://pneuexpress.online/tanglee/getUserImagesTwo.php",
         {
           email: localStorage.getItem("userEmail"),
         },
@@ -139,7 +139,7 @@ function PersonalInfo() {
             data2.map((src, index) => (
               <img
                 key={index}
-                src={`http://localhost/tanglee/uploads/${src.name}`}
+                src={`https://pneuexpress.online/tanglee/uploads/${src.name}`}
                 alt={`Slide ${index}`}
                 style={styles.image}
               />
