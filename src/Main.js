@@ -213,15 +213,18 @@ function Main() {
     );
 
     //(response.data);
-    setCountries([
+    
+    if(response.data[0]){
+      setCountrie(response.data[0].country);
+      
+      setCountries([
   ...new Map(
     response.data
       .filter((elm) => elm.country != null)
       .map((item) => [item.country, item.country])
   ).values(),
 ]);
-    if(response.data[0])
-      setCountrie(response.data[0].country);
+    }
     else{
       setCountrie(null)
     }
