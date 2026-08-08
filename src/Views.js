@@ -65,7 +65,7 @@ useEffect(()=>{
       </div>
       {!toggle && <div style={{width:'100%',marginTop:'65px',display:'flex',flexWrap:'wrap'}}>
         {viewedUsers && viewedUsers.map((elm, index) => (
-            <div onClick={()=>{navigate(`/info/${elm.id}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px'}}>
+            <div onClick={()=>{navigate(`/info/${elm.id_viewed}`);}} key={index} style={{width: '110px', height: '110px',position:'relative', display: 'inline-block', margin: '5px 5px 0px'}}>
 {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} key={index} src={`https://pneuexpress.online/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
           
             <div style={{position: 'absolute', bottom: '10px', left: '10px', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)',fontSize:'0.6em', padding:'5px'}}>
@@ -77,7 +77,7 @@ useEffect(()=>{
       </div>}
       {toggle && <div style={{width:'100%',marginTop:'65px',display:'flex',flexWrap:'wrap'}}>
         {viewingUsers && viewingUsers.map((elm, index) => (
-            <div onClick={()=>{navigate(`/info/${elm.id}`);}} key={index} style={{width: '110px', margin: '5px 5px 0px', height: '110px',position:'relative', display: 'inline-block'}}>
+            <div onClick={()=>{navigate(`/info/${elm.id_viewer}`);}} key={index} style={{width: '110px', margin: '5px 5px 0px', height: '110px',position:'relative', display: 'inline-block'}}>
           {elm.imageName && <img style={{ width: '110px', height: '110px', objectFit: 'cover', margin: '10px 0px 5px' }} key={index} src={`https://pneuexpress.online/tanglee/uploads/${elm.imageName}`} alt={`Person ${index}`} />}
           
             <div style={{position: 'absolute', bottom: '10px', left: '10px', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)',fontSize:'0.6em', padding:'5px'}}>
