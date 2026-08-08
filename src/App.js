@@ -12,9 +12,7 @@ import Favourite from './Favourite';
 import Like from './Like';
 import Chat from './Chat';
 import Messages from './Messages';
-import React, { useEffect } from 'react';
-import axios from 'axios';
-import { useFirebaseNotifications } from "./useFirebaseNotifications";
+import React from 'react';
 
 function App() {
   return (
