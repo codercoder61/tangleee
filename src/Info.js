@@ -108,7 +108,7 @@ useEffect(() => {
   };
 
   handleFetch2();
-}, [id]);
+}, [id,handleFetch]);
   
   return (
     <div>
