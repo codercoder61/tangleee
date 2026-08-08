@@ -8,36 +8,36 @@ import { useEffect } from 'react';
 function Update() {
 //const [data, setData] = useState([]);
     useEffect(() => {
-        axios.post('https://soc-net.info/backend/getUserData.php', {
+        axios.post('http://localhost/tanglee/getUserData.php', {
           email: localStorage.getItem("userEmail")
         })
         .then(response => {
           //'Response:', response.data);
           //setData(response.data);
-          setName(response.data[0].name)
-          setAge(response.data[0].age)
-          setPhoneNumber(response.data[0].number)
-          setCity(response.data[0].city)
-          setCountry(response.data[0].country)
-          setReligion(response.data[0].religion)
-          setEthnicity(response.data[0].ethnicity)
-          setHeight(response.data[0].height)
-          setWeight(response.data[0].weight)
-          setBodyType(response.data[0].bodyType)
-          setDrink(response.data[0].drink)
-          setSmoke(response.data[0].smoke)
-          setMaritalStatus(response.data[0].maritalStatus)
-          setHaveChildren(response.data[0].haveChildren)
-          setNumberChildren(response.data[0].numberOfChildren)
-          setOccupation(response.data[0].profession)
-          setEmployment(response.data[0].employmentStatus)
-          setIncome(response.data[0].income)
-          setLivingSituation(response.data[0].livingSituation)
-          setRelocate(response.data[0].relocateWill)
-          setRelationShip(response.data[0].lookingFor)
-          setNationality(response.data[0].nationality)
-          setEducation(response.data[0].education)
-          setLanguage(response.data[0].spokenLanguage)
+          setName(response.data.name)
+          setAge(response.data.age)
+          setPhoneNumber(response.data.number)
+          setCity(response.data.city)
+          setCountry(response.data.country)
+          setReligion(response.data.religion)
+          setEthnicity(response.data.ethnicity)
+          setHeight(response.data.height)
+          setWeight(response.data.weight)
+          setBodyType(response.data.bodyType)
+          setDrink(response.data.drink)
+          setSmoke(response.data.smoke)
+          setMaritalStatus(response.data.maritalStatus)
+          setHaveChildren(response.data.haveChildren)
+          setNumberChildren(response.data.numberOfChildren)
+          setOccupation(response.data.profession)
+          setEmployment(response.data.employmentStatus)
+          setIncome(response.data.income)
+          setLivingSituation(response.data.livingSituation)
+          setRelocate(response.data.relocateWill)
+          setRelationShip(response.data.lookingFor)
+          setNationality(response.data.nationality)
+          setEducation(response.data.education)
+          setLanguage(response.data.spokenLanguage)
         })
         .catch(error => {
           console.error('Error posting data:', error);
@@ -163,7 +163,7 @@ const handleLanguageChange = (event)=>{
   e.preventDefault();
 
   try {
-    const response = await axios.post('https://soc-net.info/backend/updateUser.php', {
+    await axios.post('http://localhost/tanglee/updateUser.php', {
       email:localStorage.getItem("userEmail"),
       name: name,
       age: age,
@@ -218,13 +218,28 @@ const handleLanguageChange = (event)=>{
             <div className={age!==""?"apply field":"field"}>Age</div>
         </div>
          <div style={{position:"relative"}}>
-            <input required value={city} onChange={handleCityChange} type="text" name="city"/>
+            <input
+  required
+  value={city ?? ""}
+  onChange={handleCityChange}
+  type="text"
+  name="city"
+/>
             <div className={city!==""?"apply field":"field"}>City</div>
         </div>
-       <div style={{position:"relative"}}>
-            <input required  value={country} onChange={handleCountryChange} type="text" name="country"/>
-            <div className={country!==""?"apply field":"field"}>Country</div>
-        </div>
+      <div style={{ position: "relative" }}>
+  <input
+    required
+    value={country ?? ""}
+    onChange={handleCountryChange}
+    type="text"
+    name="country"
+  />
+
+  <div className={country ? "apply field" : "field"}>
+    Country
+  </div>
+</div>
         <div style={{position:"relative"}}>
             <input required value={phoneNumber} onChange={handlePhoneNumberChange} type="text" name="phoneNumber"/>
             <div className={phoneNumber!==""?"apply field":"field"}>Phone number</div>
